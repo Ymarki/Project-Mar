@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class BiterModel : MonoBehaviour
+public class DynamicPlatform : MonoBehaviour
 {
-    [SerializeField] private GameObject _checkPointLeft;
-    [SerializeField] private GameObject _checkPointRight;
+    [SerializeField] private GameObject _checkPointUp;
+    [SerializeField] private GameObject _checkPointDown;
 
-    [SerializeField] [Range(-100, 100)] private float _speed;
-    [SerializeField] [Range(0, 100)] private float _timerBetweenTurnAround;
+    [SerializeField][Range(-100, 100)] private float _speed;
+    [SerializeField][Range(0, 100)] private float _timerBetweenTurnAround;
 
     private float _timer;
 
@@ -20,7 +20,7 @@ public class BiterModel : MonoBehaviour
     }
     private void Update()
     {
-        _rigidbody2D.velocity = new Vector2(_speed, _rigidbody2D.velocity.y);
+        _rigidbody2D.velocity = new Vector2(0, _speed);
         if (!_turnAround)
         {
             _timer += Time.deltaTime;
@@ -33,12 +33,12 @@ public class BiterModel : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (_checkPointLeft.transform.position.x > _rigidbody2D.position.x && _turnAround)
+        if (_checkPointUp.transform.position.y < _rigidbody2D.position.y && _turnAround)
         {
             _speed *= -1;
             _turnAround = false;
         }
-        if (_checkPointRight.transform.position.x < _rigidbody2D.position.x && _turnAround)
+        if (_checkPointDown.transform.position.y > _rigidbody2D.position.y && _turnAround)
         {
             _speed *= -1;
             _turnAround = false;
