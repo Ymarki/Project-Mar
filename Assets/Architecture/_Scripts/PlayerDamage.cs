@@ -1,29 +1,43 @@
 using UnityEngine;
 
-public class PlayerDamage : MonoBehaviour
+namespace _Script
 {
-    private Rigidbody2D _rigidbody2D;
-
-    [SerializeField] private float _forceJump;
-    private float _jumpSpeed;
-
-    private void Start()
+    public class PlayerDamage : MonoBehaviour
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-        
-    {
-        _jumpSpeed = _rigidbody2D.velocity.magnitude;
-        if (collision.tag == "Enemy" && _rigidbody2D.velocity.y < 0)
+        /*
+            ќсновной смысл класса "PlayerDamage" - добавить систему аннигил€ции противников дл€ объекта "PlayerObject".
+        */
+
+        private Rigidbody2D _rigidbody2D;
+
+        [SerializeField] private float _forceJump;
+        private float _jumpSpeed;
+
+        private void Start()
         {
-            Destroy(collision.gameObject);
-            _rigidbody2D.AddForce(transform.up * _jumpSpeed + transform.up * _forceJump, ForceMode2D.Impulse);
+            _rigidbody2D = GetComponent<Rigidbody2D>();
         }
-        if(collision.tag == "Biter" && _rigidbody2D.velocity.y < 0)
+
+
+        private void OnTriggerEnter2D(Collider2D collision)
+
         {
-            Destroy(collision.transform.parent.gameObject);
-            _rigidbody2D.AddForce(transform.up * _jumpSpeed + transform.up * _forceJump, ForceMode2D.Impulse);
+
+            _jumpSpeed = _rigidbody2D.velocity.magnitude;
+
+            if (collision.tag == "Enemy" && _rigidbody2D.velocity.y < 0)
+            {
+                Destroy(collision.gameObject);
+
+                _rigidbody2D.AddForce(transform.up * _jumpSpeed + transform.up * _forceJump, ForceMode2D.Impulse);
+            }
+
+            if (collision.tag == "Biter" && _rigidbody2D.velocity.y < 0)
+            {
+                Destroy(collision.transform.parent.gameObject);
+
+                _rigidbody2D.AddForce(transform.up * _jumpSpeed + transform.up * _forceJump, ForceMode2D.Impulse);
+            }
         }
     }
 }

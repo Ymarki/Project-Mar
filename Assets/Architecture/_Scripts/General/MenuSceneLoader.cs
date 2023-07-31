@@ -1,13 +1,19 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MenuSceneLoader : MonoBehaviour
+namespace _Script.General
 {
-    private const byte _sceneId = 2;
-
-    public void LoadGame()
+    public class MenuSceneLoader : MonoBehaviour
     {
-        SceneManager.LoadScene(_sceneId);
-    }
+        /*
+            Основной смысл класса "MenuSceneLoader" - Инициализация игровой сцены начального уровня.
+        */
 
+        private const byte _sceneId = 2;
+
+        public void LoadGame()
+        {
+            SceneManager.LoadScene(_sceneId);
+        }
+    }
 }

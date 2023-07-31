@@ -1,10 +1,18 @@
 using UnityEngine;
 
-public class BiterDamage : MonoBehaviour
+namespace _Script
 {
-    [SerializeField] private int _damage;
-    public int Damage()
+    public class BiterDamage : MonoBehaviour
     {
-        return _damage;
+        /* 
+        Основной смысл класса "BiterDamage" - устанавливать значение урона для объекта "Biter"
+        */
+
+        [SerializeField] private int _damage;
+
+        public int Damage()
+        {
+            return _damage;
+        }
     }
 }

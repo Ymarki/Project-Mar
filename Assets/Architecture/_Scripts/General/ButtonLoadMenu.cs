@@ -1,12 +1,20 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ButtonLoadMenu : MonoBehaviour
+namespace _Script.General
 {
-    private const byte _sceneId = 1;
-
-    public void LoadGame()
+    public class ButtonLoadMenu : MonoBehaviour
     {
-        SceneManager.LoadScene(_sceneId);
+        /*
+            Основной смысл класса "ButtonLoadMenu" - 
+            По нажатии на кнопку "Back in menu" во время игры, Загружать сцену игрового меню.
+        */
+
+        private const byte _sceneId = 1;
+
+        public void LoadGame()
+        {
+            SceneManager.LoadScene(_sceneId);
+        }
     }
 }

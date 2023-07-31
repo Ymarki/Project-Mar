@@ -1,21 +1,31 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelLoader : MonoBehaviour
+namespace _Script.General
 {
-    private bool _isLoad = true;
-    [SerializeField] private int _sceneId;
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class LevelLoader : MonoBehaviour
     {
-        if (collision.tag == "Player" && _isLoad)
+        /*
+            Основной смысл класса "LevelLoader" - Инициализация заданных ID сцен при касании триггера
+            определённого объекта с тэгом "Player".
+        */
+
+        private bool _isLoad = true;
+
+        [SerializeField] private int _sceneId;
+
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            _isLoad = false;
-            LoadGame();
+            if (collision.tag == "Player" && _isLoad)
+            {
+                _isLoad = false;
+                LoadGame();
+            }
+        }
+
+        private void LoadGame()
+        {
+            SceneManager.LoadScene(_sceneId);
         }
     }
-    private void LoadGame()
-    {
-        SceneManager.LoadScene(_sceneId);
-    }
-
 }

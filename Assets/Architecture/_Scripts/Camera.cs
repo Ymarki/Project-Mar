@@ -1,17 +1,25 @@
 using UnityEngine;
 
-public class Camera : MonoBehaviour
+namespace _Script
 {
-
-    [SerializeField] private Camera _camera;
-
-    [SerializeField] private GameObject _cameraTarget;
-
-    private void Update()
+    public class Camera : MonoBehaviour
     {
-        if (_camera.transform.position.x < _cameraTarget.transform.position.x)
+        /*
+        Основной смысл класса "Camera" - устанавливать нужную позицию камеры.
+        */
+        [SerializeField] private Camera _camera;
+
+        [SerializeField] private GameObject _cameraTarget;
+
+        private void Update()
         {
-            transform.position = new Vector3(_cameraTarget.transform.position.x, _camera.transform.position.y, _camera.transform.position.z);
+            if (_camera.transform.position.x < _cameraTarget.transform.position.x)
+            {
+                transform.position = new Vector3
+                    (_cameraTarget.transform.position.x,
+                    _camera.transform.position.y,
+                    _camera.transform.position.z);
+            }
         }
     }
 }
